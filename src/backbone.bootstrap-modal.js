@@ -34,10 +34,10 @@
     <div class="modal-footer">\
       <% if (allowCancel) { %>\
         <% if (cancelText) { %>\
-          <a href="#" class="btn cancel">{{cancelText}}</a>\
+          <a href="#" class="cancel {{cancelButtonClass}}">{{cancelText}}</a>\
         <% } %>\
       <% } %>\
-      <a href="#" class="btn ok btn-primary">{{okText}}</a>\
+      <a href="#" class="ok {{okButtonClass}}">{{okText}}</a>\
     </div>\
   ');
 
@@ -89,14 +89,16 @@
      * @see http://twitter.github.com/bootstrap/javascript.html#modals
      *
      * @param {Object} options
-     * @param {String|View} [options.content] Modal content. Default: none
-     * @param {String} [options.title]        Title. Default: none
-     * @param {String} [options.okText]       Text for the OK button. Default: 'OK'
-     * @param {String} [options.cancelText]   Text for the cancel button. Default: 'Cancel'. If passed a falsey value, the button will be removed
-     * @param {Boolean} [options.allowCancel  Whether the modal can be closed, other than by pressing OK. Default: true
-     * @param {Boolean} [options.escape]      Whether the 'esc' key can dismiss the modal. Default: true, but false if options.cancellable is true
-     * @param {Boolean} [options.animate]     Whether to animate in/out. Default: false
-     * @param {Function} [options.template]   Compiled underscore template to override the default one
+     * @param {String|View} [options.content]         Modal content. Default: none
+     * @param {String} [options.title]                Title. Default: none
+     * @param {String} [options.okText]               Text for the OK button. Default: 'OK'
+     * @param {String} [options.cancelText]           Text for the cancel button. Default: 'Cancel'. If passed a falsey value, the button will be removed
+     * @param {Boolean} [options.allowCancel          Whether the modal can be closed, other than by pressing OK. Default: true
+     * @param {Boolean} [options.escape]              Whether the 'esc' key can dismiss the modal. Default: true, but false if options.cancellable is true
+     * @param {Boolean} [options.animate]             Whether to animate in/out. Default: false
+     * @param {Function} [options.template]           Compiled underscore template to override the default one
+     * @param {String}   [options.okButtonClass]      CSS class string for OK button.  Default: 'btn btn-primary'
+     * @param {String}   [options.cancelButtonClass]  CSS class string for Cancel button.  Default: 'btn'
      */
     initialize: function(options) {
       this.options = _.extend({
@@ -108,7 +110,9 @@
         allowCancel: true,
         escape: true,
         animate: false,
-        template: template
+        template: template,
+        okButtonClass: 'btn btn-primary',
+        cancelButtonClass: 'btn'
       }, options);
     },
 
