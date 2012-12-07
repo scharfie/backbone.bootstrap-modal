@@ -60,6 +60,8 @@ Set up the modal with the following options:
 - {Boolean} [options.escape]      Whether the 'esc' key can dismiss the modal- true, but false if options.cancellable is true
 - {Boolean} [options.animate]     Whether to animate in/out. Default: false
 - {Function} [options.template]   Compiled underscore template to override the default one
+- {String}   [options.okButtonClass]      CSS class string for OK button.  Default: 'btn btn-primary'
+- {String}   [options.cancelButtonClass]  CSS class string for Cancel button.  Default: 'btn'
 
 
 ###modal.open([cb])
