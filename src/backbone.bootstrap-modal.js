@@ -174,6 +174,8 @@
         self.trigger('shown');
       });
 
+      $el.trigger('shown');
+
       //Adjust the modal and backdrop z-index; for dealing with multiple modals
       var numModals = Modal.count,
           $backdrop = $('.modal-backdrop:eq('+numModals+')'),
