@@ -89,16 +89,14 @@
      * @see http://twitter.github.com/bootstrap/javascript.html#modals
      *
      * @param {Object} options
-     * @param {String|View} [options.content]         Modal content. Default: none
-     * @param {String} [options.title]                Title. Default: none
-     * @param {String} [options.okText]               Text for the OK button. Default: 'OK'
-     * @param {String} [options.cancelText]           Text for the cancel button. Default: 'Cancel'. If passed a falsey value, the button will be removed
-     * @param {Boolean} [options.allowCancel          Whether the modal can be closed, other than by pressing OK. Default: true
-     * @param {Boolean} [options.escape]              Whether the 'esc' key can dismiss the modal. Default: true, but false if options.cancellable is true
-     * @param {Boolean} [options.animate]             Whether to animate in/out. Default: false
-     * @param {Function} [options.template]           Compiled underscore template to override the default one
-     * @param {String}   [options.okButtonClass]      CSS class string for OK button.  Default: 'btn btn-primary'
-     * @param {String}   [options.cancelButtonClass]  CSS class string for Cancel button.  Default: 'btn'
+     * @param {String|View} [options.content] Modal content. Default: none
+     * @param {String} [options.title]        Title. Default: none
+     * @param {String} [options.okText]       Text for the OK button. Default: 'OK'
+     * @param {String} [options.cancelText]   Text for the cancel button. Default: 'Cancel'. If passed a falsey value, the button will be removed
+     * @param {Boolean} [options.allowCancel  Whether the modal can be closed, other than by pressing OK. Default: true
+     * @param {Boolean} [options.escape]      Whether the 'esc' key can dismiss the modal. Default: true, but false if options.cancellable is true
+     * @param {Boolean} [options.animate]     Whether to animate in/out. Default: false
+     * @param {Function} [options.template]   Compiled underscore template to override the default one
      */
     initialize: function(options) {
       this.options = _.extend({
@@ -108,7 +106,7 @@
         okCloses: true,
         cancelText: 'Cancel',
         allowCancel: true,
-        escape: true,
+        escape: false,
         animate: false,
         template: template,
         okButtonClass: 'btn btn-primary',
@@ -157,14 +155,14 @@
 
       //Create it
       $el.modal({
-        keyboard: this.options.allowCancel,
-        backdrop: this.options.allowCancel ? true : 'static'
+        keyboard: this.options.escape,
+        backdrop: this.options.escape ? true : 'static'
       });
 
       //Focus OK button
       $el.one('shown', function() {
         if (self.options.focusOk) {
-          $el.find('.btn.ok').focus();
+          $el.find('.ok').focus();
         }
 
         if (self.options.content && self.options.content.trigger) {
@@ -185,7 +183,7 @@
       $backdrop.css('z-index', backdropIndex + numModals);
       this.$el.css('z-index', elIndex + numModals);
 
-      if (this.options.allowCancel) {
+      if (this.options.escape) {
         $backdrop.one('click', function() {
           if (self.options.content && self.options.content.trigger) {
             self.options.content.trigger('cancel', self);
